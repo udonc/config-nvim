@@ -11,6 +11,10 @@ opt.autoindent = true -- 自動インデント
 opt.tabstop = 4 -- タブ幅
 opt.shiftwidth = 4 -- 自動インデント幅
 
+-- 不可視文字の可視化
+opt.list = true
+opt.listchars = { tab = " ▸", trail = "·" }
+
 opt.wrap = false -- 行の折り返し
 
 -- 検索
