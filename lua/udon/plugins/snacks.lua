@@ -97,6 +97,11 @@ return {
 			}
 		},
 		picker = {
+			hidden = true,           -- dotfilesを表示
+			ignored = false,         -- gitignoreされたファイルは非表示（node_modules自動除外）
+			include = {
+				".udonc",            -- gitignoreされてても表示したいもの
+			},
 			sources = {
 				explorer = {
 					auto_close = true,
