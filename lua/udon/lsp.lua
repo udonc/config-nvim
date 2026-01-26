@@ -15,6 +15,8 @@ vim.lsp.enable({
 	"ts_ls",
 	-- Markdown
 	"marksman",
+	-- MDX
+	"mdx_analyzer",
 	-- JSON
 	"jsonls",
 })

@@ -1,5 +1,8 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
 	lazy = false,
-	build = ':TSUpdate'
+	build = ':TSUpdate',
+	opts = {
+		highlight = { enable = true },
+	},
 }
