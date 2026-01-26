@@ -1,6 +1,6 @@
 return {
 	'nvim-lualine/lualine.nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
+	dependencies = { 'echasnovski/mini.icons' },
 	opts = function(_, opts)
 		opts.sections = opts.sections or {}
 		opts.sections.lualine_c = opts.sections.lualine_c or {}

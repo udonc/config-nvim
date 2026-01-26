@@ -3,9 +3,7 @@ return {
 	lazy = false,
 	priority = 1000,
 	config = function()
-		require("nightfox").setup({
-			transparent = true,
-		})
+		require("nightfox").setup()
 		vim.cmd("colorscheme duskfox")
-	end
+	end,
 }
