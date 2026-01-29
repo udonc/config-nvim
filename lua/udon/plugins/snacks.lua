@@ -89,7 +89,12 @@ return {
 		indent = {
 			animate = { enabled = false },
 		},
-		lazygit = {},
+		lazygit = {
+			win = {
+				width = 0,
+				height = 0,
+			},
+		},
 		terminal = {
 			win = {
 				style = {
