@@ -15,3 +15,7 @@ vim.keymap.set("i", "<C-Esc>", "<Esc>")
 vim.keymap.set("v", "<C-Esc>", "<Esc>")
 vim.keymap.set("c", "<C-Esc>", "<Esc>")
 vim.keymap.set("t", "<C-Esc>", "<C-\\><C-n>")
+
+-- スクロール時にカーソルを中央に維持
+vim.keymap.set({ "n", "v", "x" }, "<C-u>", "<C-u>zz", { silent = true })
+vim.keymap.set({ "n", "v", "x" }, "<C-d>", "<C-d>zz", { silent = true })
