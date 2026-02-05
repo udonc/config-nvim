@@ -86,6 +86,14 @@ return {
 				{ section = "startup" },
 			},
 		},
+		image = {
+			enabled = true,
+			doc = {
+				-- インライン表示は無効、K で Snacks.image.hover() を使ってポップアップ表示する
+				inline = false,
+				float = false,
+			},
+		},
 		indent = {
 			animate = { enabled = false },
 		},
@@ -525,6 +533,15 @@ return {
 				Snacks.picker.lsp_workspace_symbols()
 			end,
 			desc = "LSP Workspace Symbols",
+		},
+		-- Image
+		{
+			"K",
+			function()
+				Snacks.image.hover()
+			end,
+			ft = { "markdown", "mdx" },
+			desc = "Show image popup",
 		},
 		-- Other
 		{
