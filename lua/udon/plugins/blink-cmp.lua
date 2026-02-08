@@ -3,7 +3,9 @@ return {
 	version = "1.*",
 	opts = {
 		keymap = {
-			preset = "enter"
+			preset = "enter",
+			["<Tab>"] = { "accept", "snippet_forward", "fallback" },
+			["<S-Tab>"] = { "snippet_backward", "fallback" },
 		},
 		sources = {
 			-- add lazydev to your completion providers
