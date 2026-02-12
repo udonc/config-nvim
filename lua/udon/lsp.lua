@@ -1,7 +1,14 @@
 vim.diagnostic.config({
 	virtual_text = false,
 	virtual_lines = true,
-	signs = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "危",
+			[vim.diagnostic.severity.WARN] = "警",
+			[vim.diagnostic.severity.INFO] = "報",
+			[vim.diagnostic.severity.HINT] = "示",
+		},
+	},
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,

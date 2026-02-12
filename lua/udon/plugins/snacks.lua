@@ -6,84 +6,147 @@ return {
 	opts = {
 		dashboard = {
 			preset = {
-				header = [[██╗   ██╗███████╗ ██████╗ ██████╗ ██████╗ ███████╗]]
-					.. "\n"
-					.. [[██║   ██║██╔════╝██╔════╝██╔═══██╗██╔══██╗██╔════╝]]
-					.. "\n"
-					.. [[██║   ██║███████╗██║     ██║   ██║██║  ██║█████╗]]
-					.. "  \n"
-					.. [[╚██╗ ██╔╝╚════██║██║     ██║   ██║██║  ██║██╔══╝]]
-					.. "  \n"
-					.. [[ ╚████╔╝ ███████║╚██████╗╚██████╔╝██████╔╝███████╗]]
-					.. "\n"
-					.. [[  ╚═══╝  ╚══════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝]],
+				header = table.concat({
+					[[                                                                       ]],
+					[[                                                                     ]],
+					[[       ████ ██████           █████      ██                     ]],
+					[[      ███████████             █████                             ]],
+					[[      █████████ ███████████████████ ███   ███████████   ]],
+					[[     █████████  ███    █████████████ █████ ██████████████   ]],
+					[[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
+					[[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
+					[[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
+					[[                        󱍿 新世代型電子式書斎󱍿                          ]],
+				}, "\n"),
+				keys = {},
 			},
 			sections = {
-				{ section = "header" },
-				{ section = "keys", gap = 1, padding = 1 },
+				{ section = "header", padding = 1 },
 				{
-					pane = 2,
-					icon = " ",
-					desc = "Browse Repo",
-					padding = 1,
-					key = "b",
-					action = function()
-						Snacks.gitbrowse()
-					end,
+					text = {
+						{ "◢", hl = "SnacksDashboardKey" },
+						{
+							"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+							hl = "SnacksDashboardSpecial",
+						},
+						{ "◆", hl = "SnacksDashboardKey" },
+						{
+							"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+							hl = "SnacksDashboardSpecial",
+						},
+						{ "◣", hl = "SnacksDashboardKey" },
+					},
+					align = "center",
 				},
 				function()
-					local in_git = Snacks.git.get_root() ~= nil
-					local cmds = {
-						{
-							title = "Notifications",
-							cmd = "gh notify -s -a -n5",
-							action = function()
-								vim.ui.open("https://github.com/notifications")
-							end,
-							key = "n",
-							icon = " ",
-							height = 5,
-							enabled = true,
-						},
-						{
-							title = "Open Issues",
-							cmd = "gh issue list -L 3",
-							key = "i",
-							action = function()
-								vim.fn.jobstart("gh issue list --web", { detach = true })
-							end,
-							icon = " ",
-							height = 7,
-						},
-						{
-							icon = " ",
-							title = "Open PRs",
-							cmd = "gh pr list -L 3",
-							key = "P",
-							action = function()
-								vim.fn.jobstart("gh pr list --web", { detach = true })
-							end,
-							height = 7,
-						},
-						{
-							icon = " ",
-							title = "Git Status",
-							cmd = "git --no-pager diff --stat -B -M -C",
-							height = 10,
+					local stats = require("lazy.stats").stats()
+					local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
+					local v = vim.version()
+					return {
+						align = "center",
+						padding = 0,
+						text = {
+							{ "◆ ", hl = "SnacksDashboardSpecial" },
+							{ os.date("%Y-%m-%d"), hl = "SnacksDashboardTitle" },
+							{ " ┆ ", hl = "SnacksDashboardSpecial" },
+							{ "v" .. v.major .. "." .. v.minor .. "." .. v.patch, hl = "SnacksDashboardTitle" },
+							{ " ┆ ", hl = "SnacksDashboardSpecial" },
+							{ stats.loaded .. "/" .. stats.count .. "拡張", hl = "SnacksDashboardTitle" },
+							{ " ┆ ", hl = "SnacksDashboardSpecial" },
+							{ ms .. "ms", hl = "SnacksDashboardTitle" },
+							{ " ◆", hl = "SnacksDashboardSpecial" },
 						},
 					}
-					return vim.tbl_map(function(cmd)
-						return vim.tbl_extend("force", {
-							pane = 2,
-							section = "terminal",
-							enabled = in_git,
-							padding = 1,
-							ttl = 5 * 60,
-							indent = 3,
-						}, cmd)
-					end, cmds)
 				end,
-				{ section = "startup" },
+				{
+					text = {
+						{ "┣", hl = "SnacksDashboardKey" },
+						{
+							"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+							hl = "SnacksDashboardSpecial",
+						},
+						{ "◆", hl = "SnacksDashboardKey" },
+						{
+							"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+							hl = "SnacksDashboardSpecial",
+						},
+						{ "┫", hl = "SnacksDashboardKey" },
+					},
+					align = "center",
+				},
+				function()
+					local menu = {
+						{
+							icon = "文",
+							desc = "文献探索",
+							key = "f",
+							action = ":lua Snacks.dashboard.pick('files')",
+						},
+						{ icon = "新", desc = "新規起草", key = "n", action = ":ene | startinsert" },
+						{
+							icon = "検",
+							desc = "全文検索",
+							key = "g",
+							action = ":lua Snacks.dashboard.pick('live_grep')",
+						},
+						{
+							icon = "近",
+							desc = "近着文献",
+							key = "r",
+							action = ":lua Snacks.dashboard.pick('oldfiles')",
+						},
+						{
+							icon = "調",
+							desc = "環境調整",
+							key = "c",
+							action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+						},
+						{ icon = "復", desc = "前回復帰", key = "s", section = "session" },
+						{
+							icon = "拡",
+							desc = "拡張管理",
+							key = "L",
+							action = ":Lazy",
+							enabled = package.loaded.lazy ~= nil,
+						},
+						{ icon = "退", desc = "退室", key = "q", action = ":qa" },
+					}
+					local items = {}
+					for _, m in ipairs(menu) do
+						if m.enabled == nil or m.enabled then
+							table.insert(items, {
+								text = {
+									{ m.icon, hl = "SnacksDashboardIcon", width = 6 },
+									{ m.desc, hl = "SnacksDashboardDesc", width = 12 },
+									{ m.key, hl = "SnacksDashboardKey" },
+								},
+								action = m.action,
+								section = m.section,
+								key = m.key,
+								align = "center",
+								padding = 1,
+							})
+						end
+					end
+					return items
+				end,
+				{
+					text = {
+						{ "◥", hl = "SnacksDashboardKey" },
+						{
+							"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+							hl = "SnacksDashboardSpecial",
+						},
+						{ "◆", hl = "SnacksDashboardKey" },
+						{
+							"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+							hl = "SnacksDashboardSpecial",
+						},
+						{ "◤", hl = "SnacksDashboardKey" },
+					},
+					align = "center",
+					padding = 1,
+				},
 			},
 		},
 		image = {
@@ -118,10 +181,19 @@ return {
 				"_udonc", -- gitignoreされてても表示したいもの
 			},
 			sources = {
+				smart = { title = "智探" },
+				files = { title = "文献" },
 				explorer = {
+					title = "書庫",
 					auto_close = true,
 					replace_netrw = true,
 				},
+				grep = { title = "捜索" },
+				buffers = { title = "帳面" },
+				recent = { title = "履歴" },
+				diagnostics = { title = "診断" },
+				command_history = { title = "指令録" },
+				grep_word = { title = "語句捜索" },
 			},
 		},
 	},
@@ -614,21 +686,6 @@ return {
 				Snacks.notifier.hide()
 			end,
 			desc = "Dismiss All Notifications",
-		},
-		{
-			"<c-/>",
-			function()
-				Snacks.terminal()
-			end,
-			desc = "Toggle Terminal",
-			mode = { "n", "t" },
-		},
-		{
-			"<c-_>",
-			function()
-				Snacks.terminal()
-			end,
-			desc = "which_key_ignore",
 		},
 		{
 			"]]",
