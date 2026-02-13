@@ -20,6 +20,7 @@ opt.ignorecase = true -- case-sensitive にしない
 opt.smartcase = true -- 大文字と小文字が混在した文字列を検索した場合に case-sensitive にする
 
 opt.cursorline = true -- カーソル行のライン表示
+opt.scrolloff = 8 -- カーソルの上下に常に8行の余白を確保
 
 opt.termguicolors = true
 opt.background = "dark"

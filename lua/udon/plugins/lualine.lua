@@ -141,7 +141,7 @@ return {
 						end
 
 						if lines > 1 then
-							return lines .. " lines, " .. chars .. " chars"
+							return lines .. " 行 " .. chars .. " 文字"
 						end
 						return chars .. " chars"
 					end,
