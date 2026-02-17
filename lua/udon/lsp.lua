@@ -26,4 +26,6 @@ vim.lsp.enable({
 	"mdx_analyzer",
 	-- JSON
 	"jsonls",
+	-- Biome (linter/formatter, biome.json(c) があるプロジェクトでのみ起動)
+	"biome",
 })
