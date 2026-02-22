@@ -28,4 +28,6 @@ vim.lsp.enable({
 	"jsonls",
 	-- Biome (linter/formatter, biome.json(c) があるプロジェクトでのみ起動)
 	"biome",
+	-- TypeSpec
+	"tsp_server",
 })
