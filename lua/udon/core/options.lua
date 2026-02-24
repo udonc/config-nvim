@@ -39,3 +39,5 @@ opt.shell = "fish"
 opt.splitright = true
 opt.splitbelow = true
 opt.equalalways = true
+
+vim.opt.backupcopy = "yes"
