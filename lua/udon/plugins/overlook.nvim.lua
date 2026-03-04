@@ -6,8 +6,7 @@ return {
     },
   },
   keys = {
-    { "<leader>pd", function() require("overlook.api").peek_definition() end, desc = "Peek definition" },
-    { "<leader>pp", function() require("overlook.api").peek_cursor() end, desc = "Peek cursor" },
+    { "<leader>pp", function() require("overlook.api").peek_definition() end, desc = "Peek definition" },
     { "<leader>pm", function() require("overlook.api").peek_mark() end, desc = "Peek mark" },
     { "<leader>pu", function() require("overlook.api").restore_popup() end, desc = "Restore last popup" },
     { "<leader>pU", function() require("overlook.api").restore_all_popups() end, desc = "Restore all popups" },
