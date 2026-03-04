@@ -180,6 +180,7 @@ return {
 			include = {
 				"_udonc", -- gitignoreされてても表示したいもの
 			},
+			filter = { cwd = true }, -- プロジェクト内のファイルのみ表示
 			sources = {
 				smart = { title = "智探" },
 				files = { title = "文献" },
