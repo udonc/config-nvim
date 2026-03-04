@@ -158,7 +158,7 @@ return {
 			},
 		},
 		indent = {
-			animate = { enabled = false },
+			enabled = false,
 		},
 		lazygit = {
 			win = {
