@@ -20,6 +20,8 @@ vim.lsp.enable({
 	"lua_ls",
 	-- TypeScript/JavaScript
 	"ts_ls",
+	-- Deno
+	"denols",
 	-- Markdown
 	"marksman",
 	-- MDX
@@ -30,4 +32,6 @@ vim.lsp.enable({
 	"biome",
 	-- TypeSpec
 	"tsp_server",
+	-- Rust
+	"rust_analyzer",
 })

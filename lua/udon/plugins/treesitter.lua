@@ -27,6 +27,8 @@ return {
 			"css",
 			"fish",
 			"typespec",
+			"rust",
+			"toml",
 		},
 		highlight = { enable = true },
 	},
