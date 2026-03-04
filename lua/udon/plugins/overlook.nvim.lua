@@ -1,6 +1,14 @@
 return {
 	"WilliamHsieh/overlook.nvim",
 	opts = {
+		on_stack_empty = function()
+			vim.schedule(function()
+				-- cursorline の値は true のまま変わってないが、style="minimal" のフロートを
+				-- 閉じた後に Neovim の描画が壊れる。トグルで再描画を強制する。
+				vim.wo.cursorline = false
+				vim.wo.cursorline = true
+			end)
+		end,
 		ui = {
 			border = "rounded",
 		},
@@ -64,6 +72,10 @@ return {
 			"<leader>pc",
 			function()
 				require("overlook.api").close_all()
+				vim.schedule(function()
+					vim.wo.cursorline = false
+					vim.wo.cursorline = true
+				end)
 			end,
 			desc = "Close all popups",
 		},
@@ -85,6 +97,7 @@ return {
 				vim.schedule(function()
 					local buf = vim.api.nvim_get_current_buf()
 					if vim.w.is_overlook_popup then
+						vim.wo.cursorline = true
 						vim.keymap.set("n", "<CR>", function()
 							require("overlook.api").open_in_original_window()
 						end, { buffer = buf, desc = "Overlook: Open in current window" })
