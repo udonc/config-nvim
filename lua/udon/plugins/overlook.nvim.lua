@@ -20,15 +20,17 @@ return {
     -- vim.w.is_overlook_popup でポップアップを判定
     vim.api.nvim_create_autocmd("WinEnter", {
       callback = function()
-        local buf = vim.api.nvim_get_current_buf()
-        if vim.w.is_overlook_popup then
-          vim.keymap.set("n", "<CR>", function()
-            require("overlook.api").open_in_original_window()
-          end, { buffer = buf, desc = "Overlook: Open in current window" })
-          vim.keymap.set("n", "<C-CR>", function()
-            require("overlook.api").open_in_vsplit()
-          end, { buffer = buf, desc = "Overlook: Open in vsplit" })
-        end
+        vim.schedule(function()
+          local buf = vim.api.nvim_get_current_buf()
+          if vim.w.is_overlook_popup then
+            vim.keymap.set("n", "<CR>", function()
+              require("overlook.api").open_in_original_window()
+            end, { buffer = buf, desc = "Overlook: Open in current window" })
+            vim.keymap.set("n", "<C-CR>", function()
+              require("overlook.api").open_in_vsplit()
+            end, { buffer = buf, desc = "Overlook: Open in vsplit" })
+          end
+        end)
       end,
     })
   end,
