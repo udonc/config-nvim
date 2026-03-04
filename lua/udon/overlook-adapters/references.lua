@@ -10,8 +10,10 @@ function M.async_create_popup(create_popup_callback, location_opts)
     confirm = function(picker, item)
       picker:close()
       if not item then return end
+      local bufnr = item.buf or (item.file and vim.fn.bufadd(item.file))
+      if not bufnr then return end
       create_popup_callback {
-        target_bufnr = vim.uri_to_bufnr(item.loc.uri),
+        target_bufnr = bufnr,
         lnum = item.pos[1],
         col = item.pos[2],
         title = item.file or "",
